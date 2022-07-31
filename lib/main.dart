@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pingo/config/app_theme.dart';
 import 'package:pingo/config/routes.dart';
 import 'package:pingo/controller/provider/theme_state.dart';
-import 'package:pingo/view/screen/home_view.dart';
+import 'package:pingo/view/screen/home_screen.dart';
 
 void main() {
   runApp(const ProviderScope(child: App()));
@@ -20,7 +20,7 @@ class _AppState extends ConsumerState<App> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: true,
+      debugShowCheckedModeBanner: false,
       themeMode: ref.watch(themeState).themeMode,
       darkTheme: AppTheme.darkTheme,
       theme: AppTheme.lightTheme,
