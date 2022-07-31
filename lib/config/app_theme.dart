@@ -26,7 +26,7 @@ class AppTheme {
     iconTheme: const IconThemeData(
       color: Colors.black,
     ),
-    fontFamily: 'Tajawal',
+    fontFamily: 'Roboto',
     textTheme: const TextTheme(
         headline4: TextStyle(
           color: Colors.black, //Color(0xFF82B229),
