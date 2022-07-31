@@ -30,13 +30,16 @@ class _HomeViewState extends State<HomeView> {
         title: const Text('Home'),
       ),
       body: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+        ),
         child: ListView.builder(
           itemCount: devices.length,
           itemBuilder: (BuildContext context, int index) {
             return ListTile(
               title: Text(devices[index].name),
               subtitle: Text(devices[index].ip),
-              trailing: Icon(Icons.keyboard_arrow_right),
+              trailing: const Icon(Icons.keyboard_arrow_right),
               onTap: () {},
             );
           },
