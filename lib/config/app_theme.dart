@@ -6,7 +6,7 @@ class AppTheme {
 
   static final ThemeData lightTheme = ThemeData(
     disabledColor: Colors.grey[300],
-    scaffoldBackgroundColor: Colors.blue[100],
+    scaffoldBackgroundColor: Colors.grey,
     appBarTheme: const AppBarTheme(
       elevation: 5,
       color: Colors.teal,
@@ -30,7 +30,7 @@ class AppTheme {
     textTheme: const TextTheme(
         headline4: TextStyle(
           color: Colors.black, //Color(0xFF82B229),
-          fontSize: 40.0,
+          fontSize: 20.0,
           fontWeight: FontWeight.bold,
         ),
         headline6: TextStyle(
@@ -56,7 +56,7 @@ class AppTheme {
       onPrimary: Colors.blue,
       primaryContainer: Color(0xFF6F8EAE),
       secondary: Color(0XFF2B5278),
-      onBackground: Colors.blue,
+      onBackground: Colors.grey,
     ),
     cardTheme: const CardTheme(
       color: Colors.white,

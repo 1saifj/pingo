@@ -3,7 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pingo/controller/provider/device_provider.dart';
 import 'package:pingo/model/device.dart';
-import 'package:pingo/service/ping_device.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
+import 'package:pingo/view/screen/add_device.dart';
+import 'package:pingo/view/widget/home_screen_sliver.dart';
 
 class HomeView extends ConsumerStatefulWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -20,31 +22,71 @@ class _HomeViewState extends ConsumerState<HomeView> {
     final deviceState = ref.watch(deviceStateProvider);
     deviceState.getDevices();
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          ref.read(deviceStateProvider).addDevice(Device(
-                id: 1,
-                name: 'Device 1',
-                ip: '192',
-                groupId: 1,
-              ));
-        },
-        child: const Icon(FontAwesomeIcons.plus),
-      ),
-      body: Container(
-        decoration: const BoxDecoration(
-          color: Colors.white,
+        appBar: AppBar(
+          title: const Text('Pingo'),
+          actions: <Widget>[
+            IconButton(
+              icon: const Icon(FontAwesomeIcons.plus),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AddDevice(),
+                  ),
+                );
+              },
+            ),
+          ],
         ),
-        child: ListView.builder(
+        drawer: Drawer(
+          child: ListView(
+            children: const [
+              DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                ),
+                child: Text('Pingo'),
+              ),
+            ],
+          ),
+        ),
+        body: ListView.builder(
+          scrollDirection: Axis.vertical,
+          shrinkWrap: true,
           itemCount: deviceState.devicesCount,
           itemBuilder: (BuildContext context, int index) {
             final devices = deviceState.devices;
+            if (index == 0) {
+              return ElevatedButton(
+                  onPressed: () {
+                    //loop through devices and check status for all devices
+                    ref.read(deviceStateProvider).checkAllDevices();
+                  },
+                  child: const Text('Check All Devices'));
+            }
             return ListTile(
               subtitle: Row(
                 children: [
                   const SizedBox(width: 10),
                   Text(
                     'Name: ${devices[index].name}',
+                    style: const TextStyle(
+                      fontSize: 15,
+                      fontFamily: 'Roboto',
+                      fontWeight: FontWeight.w300,
+                    ),
+                  ),
+                  const SizedBox(width: 100),
+                  const Text(
+                    'IP: ',
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontFamily: 'Roboto',
+                      fontWeight: FontWeight.w300,
+                    ),
+                  ),
+                  Text(
+                    devices[index].ip,
                     style: const TextStyle(
                       fontSize: 15,
                       fontFamily: 'Roboto',
@@ -93,8 +135,6 @@ class _HomeViewState extends ConsumerState<HomeView> {
               onTap: () {},
             );
           },
-        ),
-      ),
-    );
+        ));
   }
 }

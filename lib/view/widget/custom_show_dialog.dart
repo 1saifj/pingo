@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CustomDialog extends StatefulWidget {
-  CustomDialog({Key? key}) : super(key: key);
+  const CustomDialog({Key? key}) : super(key: key);
 
   @override
   State<CustomDialog> createState() => _CustomDialogState();
@@ -11,9 +11,7 @@ class _CustomDialogState extends State<CustomDialog> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Flutter"),
-      ),
+      appBar: AppBar(),
       body: Center(
         child: RaisedButton(
           onPressed: () {

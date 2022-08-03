@@ -27,8 +27,10 @@ class DeviceProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void removeDevice(index) {
-    _devices.removeAt(index);
+  void removeDevice(index) async {
+    var devicesBox = await Hive.openBox<Device>('devices');
+//delete key from box
+    devicesBox.deleteAt(index);
     notifyListeners();
   }
 
@@ -56,5 +58,23 @@ class DeviceProvider extends ChangeNotifier {
     );
     notifyListeners();
     return result;
+  }
+
+  void searchDevices(String value) async {
+    final box = await Hive.openBox<Device>('devices');
+    final devices = box.values.toList();
+    _devices.clear();
+    if (value.isEmpty) {
+      getDevices();
+      return;
+    }
+    _devices.addAll(devices.where((element) => element.name.contains(value)));
+    notifyListeners();
+  }
+
+  void checkAllDevices() async {
+    for (int i = 0; i < _devices.length; i++) {
+      await checkStatus(i);
+    }
   }
 }
