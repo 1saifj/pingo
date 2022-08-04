@@ -22,15 +22,15 @@ class DeviceProvider extends ChangeNotifier {
   }
 
   void addDevice(Device device) async {
-    var devicesBox = await Hive.openBox<Device>('devices');
-    devicesBox.add(device);
+    var box = await Hive.openBox<Device>('devices');
+    box.add(device);
     notifyListeners();
   }
 
   void removeDevice(index) async {
-    var devicesBox = await Hive.openBox<Device>('devices');
+    var box = await Hive.openBox<Device>('devices');
 //delete key from box
-    devicesBox.deleteAt(index);
+    box.deleteAt(index);
     notifyListeners();
   }
 

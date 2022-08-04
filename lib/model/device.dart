@@ -15,10 +15,13 @@ class Device {
   @HiveField(4)
   bool isOnline;
   @HiveField(5)
+  String? workplaceName;
+  @HiveField(6)
   Device(
       {required this.id,
       required this.name,
       required this.ip,
       required this.groupId,
+      required this.workplaceName,
       this.isOnline = false});
 }

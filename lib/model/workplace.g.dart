@@ -1,47 +1,38 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'device.dart';
+part of 'workplace.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class DeviceAdapter extends TypeAdapter<Device> {
+class WorkplaceAdapter extends TypeAdapter<Workplace> {
   @override
-  final int typeId = 0;
+  final int typeId = 1;
 
   @override
-  Device read(BinaryReader reader) {
+  Workplace read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return Device(
-      id: fields[0] as int,
-      name: fields[1] as String,
-      ip: fields[2] as String,
-      groupId: fields[3] as int,
-      workplaceName: fields[5] as String?,
-      isOnline: fields[4] as bool,
+    return Workplace(
+      id: fields[0] as int?,
+      name: fields[1] as String?,
+      location: fields[2] as String?,
     );
   }
 
   @override
-  void write(BinaryWriter writer, Device obj) {
+  void write(BinaryWriter writer, Workplace obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(3)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
       ..write(obj.name)
       ..writeByte(2)
-      ..write(obj.ip)
-      ..writeByte(3)
-      ..write(obj.groupId)
-      ..writeByte(4)
-      ..write(obj.isOnline)
-      ..writeByte(5)
-      ..write(obj.workplaceName);
+      ..write(obj.location);
   }
 
   @override
@@ -50,7 +41,7 @@ class DeviceAdapter extends TypeAdapter<Device> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is DeviceAdapter &&
+      other is WorkplaceAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
